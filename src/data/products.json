@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "slug": "the-barista-express",
+        "name": "the Barista Express",
+        "oldPrice": 998,
+        "price": 798,
+        "colors": [
+            "Silver",
+            "Black"
+        ],
+        "description": "One of the world's popular and well-recommended espresso machines for home use, the Barista Express is perfect for anyone wanting to get into coffee. This semi-automatic machine balances simplicity and flexibility. With automated, low pressure pre-infusion and shot timers, you can pull espresso at just the press of a button. Hone your skills tamping, and experimenting with various beans, doses and grind sizes. With an in-built grinder and steam wand, this all-in-one setup is all you need is freshly roasted coffee beans and a weighing scale, to take your espresso to the next level and make cafe-level, specialty coffee at home.",
+        "features": [
+            "54mm Portafilter, stainless steel with double spout",
+            "4 Espresso Filter Baskets – 9g & 18g pressurised, 9g & 18g unpressurised",
+            "Integrated, Magnetic Tamper",
+            "480ml (16oz) Thermal Milk Jug",
+            "Dosing Funnel",
+            "Leveling Tool",
+            "Water Filter",
+            "Maintenance Kit – cleaning brush, Allen key, cleaning disc, steam wand pin",
+            "1 Descaling Dose, and 2 Cleaning Tablets"
+        ],
+        "images": [
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916897/theBaristaExpress-1_nlq09u.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916897/theBaristaExpress-2_wk9qwx.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916897/theBaristaExpress-3_fxpvex.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916897/theBaristaExpress-4_seltd8.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916901/theBaristaExpress-5_cfkoud.png"
+        ]
+    },
+    {
+        "id": 2,
+        "slug": "the-bambino",
+        "name": "the Bambino",
+        "oldPrice": 598,
+        "price": 498,
+        "colors": [
+            "Default"
+        ],
+        "description": "The Breville Bambino is one of the best, entry-level espresso machines to brew café, specialty coffee from home. With its small, compact profile, the Bambino is perfect for budding enthusiasts, letting you step up and pair this with a grinder of your choice. Compared to the Bambino Plus, this has a fully manual steam wand, letting you practice and hone your milk steaming, and impress guests with your latte art.",
+        "features": [
+            "54mm Portafilter, with double spout",
+            "4 Espresso Filter Baskets – 9g & 18g pressurised, 9g & 18g unpressurised",
+            "54mm Plastic Tamper",
+            "480ml (16oz) Thermal Milk Jug",
+            "Maintenance Kit – cleaning disc, steam wand pin",
+            "1 Descaling Dose"
+        ],
+        "images": [
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916895/theBambino-1_rumlke.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916895/theBambino-2_pdoss9.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916896/theBambino-3_sabfg5.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916896/theBambino-4_jqzzny.png"
+        ]
+    },
+    {
+        "id": 3,
+        "slug": "the-bambino-plus",
+        "name": "the Bambino Plus",
+        "oldPrice": 698,
+        "price": 598,
+        "colors": [
+            "Default"
+        ],
+        "description": "The Bambino Plus takes that even further, giving you more simplicity with automatic milk frothing, to elevate your lattes and cappuccinos. With its small, compact profile, the Bambino Plus is perfect for budding enthusiasts, letting you step up and pair this with a grinder of your choice.",
+        "features": [
+            "54mm Portafilter, with double spout",
+            "4 Espresso Filter Baskets – 9g & 18g pressurised, 9g & 18g unpressurised",
+            "54mm Tamper",
+            "480ml (16oz) Thermal Milk Jug",
+            "Leveling Tool",
+            "Maintenance Kit – cleaning disc, steam wand pin",
+            "1 Descaling Dose, and 2 Cleaning Tablets"
+        ],
+        "images": [
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916895/theBambinoPlus-1_oo8qup.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916895/theBambinoPlus-2_asf7ep.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916896/theBambinoPlus-3_ngukwv.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916897/theBambinoPlus-4_sibmye.png"
+        ]
+    },
+    {
+        "id": 4,
+        "slug": "the-oracle-touch",
+        "name": "the Oracle Touch",
+        "oldPrice": 4888,
+        "price": 3988,
+        "colors": [
+            "Default"
+        ],
+        "description": "The Oracle Touch is the pinnacle of Breville's espresso machines. This semi-automatic machine balances simplicity and flexibility. With automated, low pressure pre-infusion and shot timers, you can pull espresso at just the press of a button. Hone your skills tamping, and experimenting with various beans, doses and grind sizes. With an in-built grinder and steam wand, this all-in-one setup is all you need is freshly roasted coffee beans and a weighing scale, to take your espresso to the next level and make cafe-level, specialty coffee at home.",
+        "features": [
+            "58mm Portafilter, stainless steel with double spout",
+            "2 Espresso Filter Baskets – 9g & 18g unpressurised",
+            "Integrated, Magnetic Tamper",
+            "480ml (16oz) Thermal Milk Jug",
+            "Dosing Funnel",
+            "Leveling Tool",
+            "Knock Box",
+            "Water Filter",
+            "Maintenance Kit – cleaning brushes, Allen keys, cleaning disc, steam wand pin",
+            "1 Descaling Dose, Steam Wand Cleaner and 2 Cleaning Tablets"
+        ],
+        "images": [
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916901/theOracleTouch-1_zcfejs.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916901/theOracleTouch-2_t8msxg.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916902/theOracleTouch-4_wp7web.png",
+            "https://res.cloudinary.com/df4yjb9f4/image/upload/v1754916902/theOracleTouch-3_ajhnn7.png"
+        ]
+    }
+]
