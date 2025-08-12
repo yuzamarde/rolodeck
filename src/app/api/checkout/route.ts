@@ -1,8 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 
+interface CartItem {
+    id: number
+    name: string
+    price: number
+    quantity: number
+}
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2024-12-18.acacia'
+    apiVersion: '2025-07-30.basil'
 })
 
 export async function POST(request: NextRequest) {
@@ -17,7 +24,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Calculate total amount
-        const totalAmount = items.reduce((sum: number, item: any) => {
+        const totalAmount = items.reduce((sum: number, item: CartItem) => {
             return sum + (item.price * item.quantity)
         }, 0)
 
@@ -27,7 +34,7 @@ export async function POST(request: NextRequest) {
             currency: 'usd',
             metadata: {
                 customerEmail,
-                items: JSON.stringify(items.map((item: any) => ({
+                items: JSON.stringify(items.map((item: CartItem) => ({
                     id: item.id,
                     name: item.name,
                     quantity: item.quantity

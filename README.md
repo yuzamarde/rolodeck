@@ -20,6 +20,28 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Google Sheets Integration
+
+This project uses Google Sheets API to fetch product data instead of static JSON files. This allows for easy content management without code changes.
+
+### Quick Setup
+
+1. **Copy the environment template:**
+   ```bash
+   cp env.example .env.local
+   ```
+
+2. **Follow the detailed setup guide:** [GOOGLE_SHEETS_SETUP.md](./GOOGLE_SHEETS_SETUP.md)
+
+3. **Use the CSV template:** Import [products-template.csv](./products-template.csv) into your Google Sheet
+
+### Benefits
+
+- **Easy Content Management:** Update products directly in Google Sheets
+- **Real-time Updates:** Changes reflect immediately (with 5-minute caching)
+- **No Code Deployment:** Content updates without rebuilding the app
+- **Collaborative Editing:** Multiple team members can edit product data
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

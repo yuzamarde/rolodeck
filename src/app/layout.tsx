@@ -1,34 +1,31 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { CartProvider } from '@/contexts/CartContext'
+import Navbar from '@/components/Navbar/page'
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "StatsAI - Your One Stop Coffee Solutions",
-  description: "Coffee machine website analytics & sales platform for comprehensive business insights",
-};
+  title: 'Rolodech - Coffee Equipment',
+  description: 'Premium coffee equipment and accessories',
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className="light">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
-      >
-        {children}
+    <html lang="en">
+      <body className={inter.className}>
+        <CartProvider>
+          <Navbar />
+          <main className="pt-16">
+            {children}
+          </main>
+        </CartProvider>
       </body>
     </html>
-  );
+  )
 }

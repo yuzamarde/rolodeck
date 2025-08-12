@@ -22,7 +22,7 @@ const splitTextIntoCharacters = (text: string) => {
     ))
 }
 
-export function Hero() {
+export default function Hero() {
     const [splineError, setSplineError] = useState(false)
     const [isClient, setIsClient] = useState(false)
     const titleRef = useRef<HTMLDivElement>(null)

@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Navbar } from '@/components/Navbar'
 
 interface FormData {
     name: string
@@ -11,6 +10,12 @@ interface FormData {
     streetAddress: string
     unitNumber: string
     postalCode: string
+}
+
+interface CartItem {
+    id: number
+    price: number
+    quantity: number
 }
 
 export default function DetailsPage() {
@@ -22,7 +27,7 @@ export default function DetailsPage() {
         unitNumber: '',
         postalCode: ''
     })
-    const [cartItems, setCartItems] = useState<any[]>([])
+    const [cartItems, setCartItems] = useState<CartItem[]>([])
     const [totalPrice, setTotalPrice] = useState(0)
     const [showValidation, setShowValidation] = useState(false)
 
@@ -106,7 +111,6 @@ export default function DetailsPage() {
     if (cartItems.length === 0) {
         return (
             <div className="min-h-screen bg-white">
-                <Navbar />
                 <div className="flex items-center justify-center h-screen">
                     <div className="text-xl text-gray-600">Loading...</div>
                 </div>
@@ -116,10 +120,8 @@ export default function DetailsPage() {
 
     return (
         <div className="min-h-screen bg-white">
-            <Navbar />
-
             {/* Main Content */}
-            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-20">
+            <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <h1 className="text-3xl font-bold text-gray-900">Your Details</h1>
@@ -231,10 +233,10 @@ export default function DetailsPage() {
 
             {/* Sticky Footer */}
             <div className="fixed bottom-0 left-0 right-0 bg-gray-50 border-t border-gray-200 px-4 py-4 z-50">
-                <div className="max-w-2xl mx-auto flex items-center justify-between">
+                <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
                     <Button
                         onClick={handleBack}
-                        className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-lg flex items-center gap-2"
+                        className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-3 rounded-xs flex items-center gap-2"
                     >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -242,14 +244,14 @@ export default function DetailsPage() {
                         Back
                     </Button>
 
-                    <div className="text-2xl font-bold text-green-600">
+                    <div className="text-xl font-medium text-gray-900">
                         Total ${totalPrice}
                     </div>
 
                     <Button
                         onClick={handleSubmit}
                         disabled={!isFormValid()}
-                        className={`px-8 py-3 rounded-lg flex items-center gap-2 transition-all ${isFormValid()
+                        className={`px-8 py-3 rounded-xs flex items-center gap-2 transition-all ${isFormValid()
                             ? 'bg-green-500 hover:bg-green-600 text-white'
                             : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                             }`}
