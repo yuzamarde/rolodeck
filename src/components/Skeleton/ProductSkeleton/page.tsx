@@ -4,7 +4,7 @@ interface ProductSkeletonProps {
 
 export default function ProductSkeleton({ count = 4 }: ProductSkeletonProps) {
     return (
-        <>
+        <div className="w-full mx-auto sm:px-12 lg:px-10 mt-24">
             {/* Header Skeleton */}
             <div className="mb-8">
                 <div className="h-8 bg-gray-200 rounded animate-pulse w-48 mb-2"></div>
@@ -26,6 +26,6 @@ export default function ProductSkeleton({ count = 4 }: ProductSkeletonProps) {
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     )
 } 
