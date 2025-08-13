@@ -1,19 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { google } from 'googleapis'
 
-// Google Sheets API configuration
-const auth = new google.auth.GoogleAuth({
-    credentials: {
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
-    },
-    scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-})
+// Check if required environment variables are available
+const googleServiceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
+const googlePrivateKey = process.env.GOOGLE_PRIVATE_KEY
+const googleSheetId = process.env.GOOGLE_SHEET_ID
 
-const sheets = google.sheets({ version: 'v4', auth })
+// Only initialize Google Sheets if all required credentials are available
+let sheets: any = null
+
+if (googleServiceAccountEmail && googlePrivateKey && googleSheetId) {
+    try {
+        const auth = new google.auth.GoogleAuth({
+            credentials: {
+                client_email: googleServiceAccountEmail,
+                private_key: googlePrivateKey.replace(/\\n/g, '\n'),
+            },
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+        })
+        sheets = google.sheets({ version: 'v4', auth })
+    } catch (error) {
+        console.error('Failed to initialize Google Sheets:', error)
+    }
+}
 
 export async function POST(request: NextRequest) {
     try {
+        // Check if Google Sheets is properly configured
+        if (!sheets) {
+            return NextResponse.json(
+                { error: 'Google Sheets is not configured. Please check your environment variables.' },
+                { status: 500 }
+            )
+        }
+
         const { name, email, phone, message, productInterest } = await request.json()
 
         if (!name || !email) {
@@ -23,7 +43,6 @@ export async function POST(request: NextRequest) {
             )
         }
 
-        const spreadsheetId = process.env.GOOGLE_SHEET_ID
         const range = 'Sheet1!A:F' // Adjust range as needed
 
         const values = [
@@ -38,7 +57,7 @@ export async function POST(request: NextRequest) {
         ]
 
         await sheets.spreadsheets.values.append({
-            spreadsheetId,
+            spreadsheetId: googleSheetId,
             range,
             valueInputOption: 'USER_ENTERED',
             requestBody: {

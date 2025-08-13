@@ -8,12 +8,24 @@ interface CartItem {
     quantity: number
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+// Check if Stripe secret key is available
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY
+
+// Only initialize Stripe if the key is available
+const stripe = stripeSecretKey ? new Stripe(stripeSecretKey, {
     apiVersion: '2025-07-30.basil'
-})
+}) : null
 
 export async function POST(request: NextRequest) {
     try {
+        // Check if Stripe is properly configured
+        if (!stripe) {
+            return NextResponse.json(
+                { error: 'Stripe is not configured. Please check your environment variables.' },
+                { status: 500 }
+            )
+        }
+
         const { items, customerEmail } = await request.json()
 
         if (!items || items.length === 0) {
