@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 
+// Helper function to properly format the private key
+function formatPrivateKey(privateKey: string): string {
+    // Remove any existing formatting and ensure proper line breaks
+    return privateKey
+        .replace(/\\n/g, '\n')
+        .replace(/"/g, '')
+        .trim()
+}
+
 export async function GET() {
     try {
         const SPREADSHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SPREADSHEET_ID
@@ -10,11 +19,19 @@ export async function GET() {
         if (!SPREADSHEET_ID || !SERVICE_ACCOUNT_EMAIL || !PRIVATE_KEY) {
             return NextResponse.json({
                 success: false,
-                error: 'Service account credentials not configured'
+                error: 'Service account credentials not configured',
+                missing: {
+                    SPREADSHEET_ID: !SPREADSHEET_ID,
+                    SERVICE_ACCOUNT_EMAIL: !SERVICE_ACCOUNT_EMAIL,
+                    PRIVATE_KEY: !PRIVATE_KEY
+                }
             }, { status: 500 })
         }
 
         const ORDERS_RANGE = 'products-order!A:M'  // All columns including status
+
+        // Format the private key properly
+        const formattedPrivateKey = formatPrivateKey(PRIVATE_KEY)
 
         // Generate JWT token for OAuth2 authentication
         const now = Math.floor(Date.now() / 1000)
@@ -27,7 +44,7 @@ export async function GET() {
         }
 
         // Create properly signed JWT token
-        const jwtToken = jwt.sign(payload, PRIVATE_KEY, {
+        const jwtToken = jwt.sign(payload, formattedPrivateKey, {
             algorithm: 'RS256'
         })
 
@@ -136,7 +153,14 @@ export async function GET() {
             totalOrders: orders.length,
             headers: headers,
             rawDataLength: rawData.length,
-            processedRows: orderRows.length
+            processedRows: orderRows.length,
+            credentials: {
+                spreadsheetId: SPREADSHEET_ID,
+                serviceAccountEmail: SERVICE_ACCOUNT_EMAIL,
+                hasPrivateKey: !!PRIVATE_KEY,
+                privateKeyLength: PRIVATE_KEY.length,
+                formattedPrivateKeyLength: formattedPrivateKey.length
+            }
         })
 
     } catch (error) {

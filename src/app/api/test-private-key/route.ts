@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
     try {
         const PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY
-        
+
         if (!PRIVATE_KEY) {
             return NextResponse.json({
                 success: false,
