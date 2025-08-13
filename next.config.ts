@@ -1,9 +1,6 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  experimental: {
-    appDir: true,
-  },
   images: {
     domains: ['res.cloudinary.com'],
     formats: ['image/webp', 'image/avif'],
