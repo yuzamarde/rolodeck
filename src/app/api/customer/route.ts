@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { google } from 'googleapis'
+import { google, sheets_v4 } from 'googleapis'
 
 // Check if required environment variables are available
 const googleServiceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
 const googlePrivateKey = process.env.GOOGLE_PRIVATE_KEY
-const googleSheetId = process.env.GOOGLE_SHEET_ID
+const googleSheetId = process.env.GOOGLE_SPREADSHEET_ID
 
 // Only initialize Google Sheets if all required credentials are available
-let sheets: any = null
+let sheets: sheets_v4.Sheets | null = null
 
 if (googleServiceAccountEmail && googlePrivateKey && googleSheetId) {
     try {

@@ -18,14 +18,14 @@ NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_your_actual_stripe_publishable_key
 # Google Sheets API Configuration
 GOOGLE_SERVICE_ACCOUNT_EMAIL=your_service_account_email@project.iam.gserviceaccount.com
 GOOGLE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYour actual private key content\n-----END PRIVATE KEY-----"
-GOOGLE_SHEET_ID=your_actual_google_sheet_id
+GOOGLE_SPREADSHEET_ID=your_actual_google_sheet_id
 ```
 
 ### Important Notes:
 - **STRIPE_SECRET_KEY**: Must start with `sk_test_` for test mode or `sk_live_` for production
 - **NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY**: Must start with `pk_test_` for test mode or `pk_live_` for production
 - **GOOGLE_PRIVATE_KEY**: Must include the entire private key including BEGIN and END markers
-- **GOOGLE_SHEET_ID**: Extract from your Google Sheets URL
+- **GOOGLE_SPREADSHEET_ID**: Extract from your Google Sheets URL
 
 ## Step 2: Vercel Environment Variables
 
@@ -41,7 +41,7 @@ GOOGLE_SHEET_ID=your_actual_google_sheet_id
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | `pk_test_...` | Production, Preview, Development |
 | `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `email@project.iam.gserviceaccount.com` | Production, Preview, Development |
 | `GOOGLE_PRIVATE_KEY` | `-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----` | Production, Preview, Development |
-| `GOOGLE_SHEET_ID` | `your_sheet_id` | Production, Preview, Development |
+| `GOOGLE_SPREADSHEET_ID` | `your_sheet_id` | Production, Preview, Development |
 
 ### Important:
 - **Production**: Used for your live site
@@ -86,7 +86,7 @@ GOOGLE_SHEET_ID=your_actual_google_sheet_id
 
 #### 3. "Google Sheets is not configured"
 - **Cause**: Missing Google Sheets credentials
-- **Solution**: Add GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, and GOOGLE_SHEET_ID
+- **Solution**: Add GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, and GOOGLE_SPREADSHEET_ID
 
 #### 4. Build Fails
 - **Cause**: Environment variables not available during build
@@ -100,7 +100,7 @@ console.log('Environment variables check:', {
     hasStripeKey: !!process.env.STRIPE_SECRET_KEY,
     hasGoogleEmail: !!process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
     hasGoogleKey: !!process.env.GOOGLE_PRIVATE_KEY,
-    hasGoogleSheet: !!process.env.GOOGLE_SHEET_ID
+    hasGoogleSheet: !!process.env.GOOGLE_SPREADSHEET_ID
 })
 ```
 
