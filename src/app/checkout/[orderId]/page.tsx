@@ -27,13 +27,30 @@ interface OrderData {
     status: string
 }
 
+interface DebugInfo {
+    totalOrders?: number
+    orderId?: string
+    foundOrderId?: string
+    allOrderIds?: string[]
+    result?: {
+        success: boolean
+        message: string
+        orders: OrderData[]
+        totalOrders: number
+        headers: string[]
+        rawDataLength: number
+        processedRows: number
+    }
+    error?: unknown
+}
+
 export default function OrderDetailsPage() {
     const params = useParams()
     const router = useRouter()
     const [orderData, setOrderData] = useState<OrderData | null>(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
-    const [debugInfo, setDebugInfo] = useState<any>(null)
+    const [debugInfo, setDebugInfo] = useState<DebugInfo | null>(null)
 
     useEffect(() => {
         const orderId = params.orderId as string
@@ -46,10 +63,10 @@ export default function OrderDetailsPage() {
         const fetchOrderData = async () => {
             try {
                 console.log('Fetching order data for orderId:', orderId)
-
+                
                 const response = await fetch('/api/fetch-orders')
                 console.log('Response status:', response.status)
-
+                
                 if (!response.ok) {
                     throw new Error(`Failed to fetch orders: ${response.status}`)
                 }
@@ -114,7 +131,7 @@ export default function OrderDetailsPage() {
             <div className="min-h-screen bg-gray-50">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <OrderErrorState error={error || 'Order not found'} />
-
+                    
                     {/* Debug Information */}
                     {debugInfo && (
                         <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -124,7 +141,7 @@ export default function OrderDetailsPage() {
                             </pre>
                         </div>
                     )}
-
+                    
                     <div className="mt-4">
                         <button
                             onClick={() => window.location.reload()}
