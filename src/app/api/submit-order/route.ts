@@ -1,6 +1,15 @@
 import { NextResponse } from 'next/server'
 import jwt from 'jsonwebtoken'
 
+// Helper function to properly format the private key
+function formatPrivateKey(privateKey: string): string {
+    // Remove any existing formatting and ensure proper line breaks
+    return privateKey
+        .replace(/\\n/g, '\n')
+        .replace(/"/g, '')
+        .trim()
+}
+
 export async function GET() {
     try {
         const SPREADSHEET_ID = process.env.NEXT_PUBLIC_GOOGLE_SPREADSHEET_ID
@@ -40,6 +49,9 @@ export async function GET() {
 
         const ORDERS_RANGE = 'products-order!A:M'
 
+        // Format the private key properly
+        const formattedPrivateKey = formatPrivateKey(PRIVATE_KEY)
+
         // Generate JWT token for OAuth2 authentication
         const now = Math.floor(Date.now() / 1000)
         const payload = {
@@ -51,7 +63,7 @@ export async function GET() {
         }
 
         // Create properly signed JWT token
-        const jwtToken = jwt.sign(payload, PRIVATE_KEY, {
+        const jwtToken = jwt.sign(payload, formattedPrivateKey, {
             algorithm: 'RS256'
         })
 
@@ -114,7 +126,9 @@ export async function GET() {
             credentials: {
                 spreadsheetId: SPREADSHEET_ID,
                 serviceAccountEmail: SERVICE_ACCOUNT_EMAIL,
-                hasPrivateKey: !!PRIVATE_KEY
+                hasPrivateKey: !!PRIVATE_KEY,
+                privateKeyLength: PRIVATE_KEY.length,
+                formattedPrivateKeyLength: formattedPrivateKey.length
             }
         })
 
@@ -145,6 +159,9 @@ export async function POST(request: Request) {
 
         const ORDERS_RANGE = 'products-order!A:M'  // Updated to include status column
 
+        // Format the private key properly
+        const formattedPrivateKey = formatPrivateKey(PRIVATE_KEY)
+
         // Generate JWT token for OAuth2 authentication
         const now = Math.floor(Date.now() / 1000)
         const payload = {
@@ -156,7 +173,7 @@ export async function POST(request: Request) {
         }
 
         // Create properly signed JWT token
-        const jwtToken = jwt.sign(payload, PRIVATE_KEY, {
+        const jwtToken = jwt.sign(payload, formattedPrivateKey, {
             algorithm: 'RS256'
         })
 
